@@ -39,6 +39,8 @@ utilities = 100
 car = 300
 otherE = 150
 
+desired_retirement_expenses = 1500
+desired_retirement_length = 35
 
 curr_assets = add_assets ( cash, equity, bonds, RE, otherA )
 curr_liabilities = add_liabilities( stu_loans, mort, credit, per_loans, otherL )
@@ -51,3 +53,10 @@ monthly_expenses = add_expenses( rent, food, utilities, car, otherE )
 
 print("Total Monthly Income: ", curr_assets)
 print("Total Monthly Expenses: ", curr_liabilities)
+
+retirement_total = ( desired_retirement_length * 12 ) * desired_retirement_expenses
+
+if monthly_income <= monthly_expenses:
+    print("Income is less than expenses therefore, unable to build wealth. \n Start by increasing income and/or lowering expenses" )
+else:
+    print( "Total amout required to save for ", desired_retirement_length, " years at ", desired_retirement_expenses, " a month: $", retirement_total )
