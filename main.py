@@ -21,7 +21,7 @@ def add_expenses( rent, food, utilities, car, other ):
 
 def compound_interest( principal, rate, periods):
     total = principal * ( pow( ( 1 + rate ), periods ))
-    return "{:.2f}".format(total)
+    return total
 
 
 #calculates total current dollar value required to pay for all expenses within retirement years including inflation
@@ -39,7 +39,8 @@ def inf_expenses( expense, years):
         total = total + curr
         prev = curr
         
-    return "{:.2f}".format(total)
+    # return "{:.2f}".format(total)
+    return total
 
 
 
@@ -96,5 +97,11 @@ retirement_total = inf_expenses( desired_retirement_expenses, desired_retirement
 if monthly_income <= monthly_expenses:
     print("Income is less than expenses therefore, unable to build wealth. \n Start by increasing income and/or lowering expenses" )
 else:
-    print( "Total amout required to save for ", desired_retirement_length, " years at ", desired_retirement_expenses, " a month: $", retirement_total )
+    print( "Total amout required to save for", desired_retirement_length, " years at", desired_retirement_expenses, "a month to retire TODAY: $", retirement_total )
+
+    if curr_assets < retirement_total:
+        print( "You are $", ( retirement_total-curr_assets ), "short of retirement")
+    else:
+        print( "Congratulations! You can retire today with an extra $", ( curr_assets-retirement_total ))
+
     
