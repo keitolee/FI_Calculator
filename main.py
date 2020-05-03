@@ -16,9 +16,32 @@ def add_income( salary, eq_int, cash_int, other ):
 def add_expenses( rent, food, utilities, car, other ):
     return rent + food + utilities + car + other
 
+
+#calculates compound interest   
+
 def compound_interest( principal, rate, periods):
-    total = principal * ( pow( ( 1 + rate ), periods ) - 1 )
+    total = principal * ( pow( ( 1 + rate ), periods ))
     return "{:.2f}".format(total)
+
+
+#calculates total current dollar value required to pay for all expenses within retirement years including inflation
+
+def inf_expenses( expense, years):
+
+    months = years*12
+    mon_rate = 0.0227/12
+    prev = expense
+    curr = 0
+    total = 0
+
+    for i in range(months):
+        curr = prev * ( 1 + mon_rate )
+        total = total + curr
+        prev = curr
+        
+    return "{:.2f}".format(total)
+
+
 
 cash = 15000
 equity = 90000
@@ -33,7 +56,7 @@ per_loans = 0
 otherL = 0
 
 salary = 100000
-eq_int = (equity * 0.07)/12 
+eq_returns = (equity * 0.07)/12 
 cash_int = (cash * 0.02)/12 
 otherI = 200
 
@@ -46,23 +69,32 @@ otherE = 150
 desired_retirement_expenses = 1500
 desired_retirement_length = 35
 
+
+
+
 curr_assets = add_assets ( cash, equity, bonds, RE, otherA )
 curr_liabilities = add_liabilities( stu_loans, mort, credit, per_loans, otherL )
 
 print("Total Current Assets: ", curr_assets)
 print("Total Current Liabilities: ", curr_liabilities)
 
-monthly_income = add_income( salary, eq_int, cash_int, otherI )
+
+
+
+monthly_income = add_income( salary, eq_returns, cash_int, otherI )
 monthly_expenses = add_expenses( rent, food, utilities, car, otherE )
 
 print("Total Monthly Income: ", curr_assets)
 print("Total Monthly Expenses: ", curr_liabilities)
 
-retirement_total = ( desired_retirement_length * 12 ) * desired_retirement_expenses
+
+
+
+retirement_total = inf_expenses( desired_retirement_expenses, desired_retirement_length )
+
 
 if monthly_income <= monthly_expenses:
     print("Income is less than expenses therefore, unable to build wealth. \n Start by increasing income and/or lowering expenses" )
 else:
     print( "Total amout required to save for ", desired_retirement_length, " years at ", desired_retirement_expenses, " a month: $", retirement_total )
-
- 
+    
