@@ -23,8 +23,13 @@ def compound_interest( principal, rate, periods):
     total = principal * ( pow( ( 1 + rate ), periods ))
     return total
 
+#calculates present value in given number of years due to inflation
 
-#calculates total current dollar value required to pay for all expenses within retirement years including inflation
+def inflation( amount, years ):
+    total = amount * pow(1.0227, years)
+    return total
+
+#calculates total current dollar value required to pay for all expenses within retirement years including inflation (sum of monthly expenses throughout retirement years)
 
 def inf_expenses( expense, years):
 
@@ -42,6 +47,10 @@ def inf_expenses( expense, years):
     # return "{:.2f}".format(total)
     return total
 
+
+# def future_inf_expenses( age, ret_age, expense, ret_years ):
+
+    
 
 
 cash = 15000
@@ -90,18 +99,25 @@ print("Total Monthly Expenses: ", curr_liabilities)
 
 
 
-
 retirement_total = inf_expenses( desired_retirement_expenses, desired_retirement_length )
 
 
-if monthly_income <= monthly_expenses:
-    print("Income is less than expenses therefore, unable to build wealth. \n Start by increasing income and/or lowering expenses" )
-else:
-    print( "Total amout required to save for", desired_retirement_length, " years at", desired_retirement_expenses, "a month to retire TODAY: $", retirement_total )
+# #Option 1: Retire Now
 
-    if curr_assets < retirement_total:
-        print( "You are $", ( retirement_total-curr_assets ), "short of retirement")
-    else:
-        print( "Congratulations! You can retire today with an extra $", ( curr_assets-retirement_total ))
+# if monthly_income <= monthly_expenses:
+#     print("Income is less than expenses therefore, unable to build wealth. \n Start by increasing income and/or lowering expenses" )
+# else:
+#     print( "Total amout required to save for", desired_retirement_length, " years at", desired_retirement_expenses, "a month to retire TODAY: $", retirement_total )
 
-    
+#     if curr_assets < retirement_total:
+#         print( "You are $", ( retirement_total-curr_assets ), "short of retirement")
+#     else:
+#         print( "Congratulations! You can retire today with an extra $", ( curr_assets-retirement_total ))
+
+
+#Option 2: Retire Later
+
+current_age = 20
+retirement_age = 65
+
+print(inflation(1000,2))
