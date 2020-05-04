@@ -27,9 +27,7 @@ desired_retirement_expenses = 1500
 desired_retirement_length = 35
 
 
-
-
-curr_assets = add_assets ( cash, equity, bonds, RE, otherA )
+curr_assets = add_assets( cash, equity, bonds, RE, otherA )
 curr_liabilities = add_liabilities( stu_loans, mort, credit, per_loans, otherL )
 
 print("Total Current Assets: ", curr_assets)
