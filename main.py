@@ -48,9 +48,14 @@ def inf_expenses( expense, years):
     return total
 
 
-# def future_inf_expenses( age, ret_age, expense, ret_years ):
-
+def future_inf_expenses( age, ret_age, expense, ret_years ):
     
+    years_until_ret = ret_age - age
+    fut_exp = inflation( expense, years_until_ret )
+
+    total = inf_expenses( fut_exp, ret_years)
+
+    return total
 
 
 cash = 15000
@@ -120,4 +125,3 @@ retirement_total = inf_expenses( desired_retirement_expenses, desired_retirement
 current_age = 20
 retirement_age = 65
 
-print(inflation(1000,2))
