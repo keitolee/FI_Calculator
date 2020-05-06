@@ -19,7 +19,7 @@ class FIapp(tk.Tk):
 
         self.frames = { }
 
-        for i in (StartPage, PageOne):
+        for i in (StartPage, RetireNow, RetireLater):
 
             frame = i(container, self)
 
@@ -42,15 +42,29 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text = "Start Page", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
-        button1 = tk.Button(self, text="Visit Page 1", command=lambda: controller.show_frame(PageOne))
+        button1 = tk.Button(self, text="Retire NOW", command=lambda: controller.show_frame(RetireNow))
         button1.pack()
 
+        button2 = tk.Button(self, text="Retire at a Specific Date", command=lambda: controller.show_frame(RetireLater))
+        button2.pack()
 
-class PageOne(tk.Frame):
+
+class RetireNow(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text = "Page 1", font=LARGE_FONT)
+        label = tk.Label(self, text = "You Selected Retire Now", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+
+
+class RetireLater(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text = "You Selected Retire Later", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
         button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
