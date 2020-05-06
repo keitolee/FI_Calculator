@@ -1,34 +1,46 @@
-from tkinter import *
-
-def clicked(btn1, btn2, btn3):
-    lbl.configure(text="Pressed Retire Now")
-    btn1.grid_forget()
-    btn2.grid_forget()
-    btn3.grid_forget()
-    print(selected.get())
-
-
-window = Tk()
-
-window.title("Financial Independence Calculator")
-
-window.geometry('600x500')
-
-lbl = Label(window, text="Welcome" )
-lbl.grid(column=0, row=0)
-
-selected = IntVar()
-
-btn1 = Radiobutton( window, text="Retire NOW", value=1, variable=selected )
-btn1.grid(column=0, row=1)
-
-btn2 = Radiobutton( window, text="Retire at a specific age", value=2, variable=selected )
-btn2.grid(column=1, row=1)
-
-start_btn = Button( window, text="Go", command=lambda: clicked1(btn1, btn2, start_btn) )
-start_btn.grid(column=2, row=1)
+import tkinter as tk
 
 
 
+LARGE_FONT = ("Verdana", 12)
 
-window.mainloop()
+
+class FIapp(tk.Tk):
+
+    def __init__( self, *args, **kwargs ):
+
+        tk.Tk.__init__(self, *args, **kwargs)
+        container = tk.Frame(self)
+
+        container.pack(side="top", fill="both", expand=True)
+
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = { }
+
+        frame = StartPage(container, self)
+
+        self.frames[StartPage] = frame
+
+        frame.grid(row = 0, column = 0, sticky="nsew")
+
+        self.show_frame(StartPage)
+
+    def show_frame(self, cont):
+
+        frame = self.frames[cont]
+        frame.tkraise()
+
+
+class StartPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text = "Start Page", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+
+
+app = FIapp()
+app.mainloop()
