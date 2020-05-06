@@ -19,11 +19,13 @@ class FIapp(tk.Tk):
 
         self.frames = { }
 
-        frame = StartPage(container, self)
+        for i in (StartPage, PageOne):
 
-        self.frames[StartPage] = frame
+            frame = i(container, self)
 
-        frame.grid(row = 0, column = 0, sticky="nsew")
+            self.frames[i] = frame
+
+            frame.grid(row = 0, column = 0, sticky="nsew")
 
         self.show_frame(StartPage)
 
@@ -40,6 +42,19 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text = "Start Page", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
+        button1 = tk.Button(self, text="Visit Page 1", command=lambda: controller.show_frame(PageOne))
+        button1.pack()
+
+
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text = "Page 1", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
+        button1.pack()
 
 
 app = FIapp()
