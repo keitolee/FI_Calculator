@@ -1,8 +1,9 @@
 import tkinter as tk
 
 
-
 LARGE_FONT = ("Verdana", 12)
+MEDIUM_FONT = ("Verdana", 10)
+SMALL_FONT = ("Verdana", 8)
 
 
 class FIapp(tk.Tk):
@@ -56,6 +57,19 @@ class RetireNow(tk.Frame):
         label = tk.Label(self, text = "You Selected Retire Now", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
+        label1 = tk.Label(self, text = "Please enter the following information:", font=MEDIUM_FONT)
+        label1.pack()
+
+        label2 = tk.Label(self, text = "Projected years of retirement", font=SMALL_FONT)
+        label2.pack()
+        txt1 = tk.Entry(self, width=10)
+        txt1.pack()
+
+        label3 = tk.Label(self, text = "Estimated monthly expenses", font=SMALL_FONT)
+        label3.pack()
+        txt2 = tk.Entry(self, width=10)
+        txt2.pack()
+
         button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
@@ -66,6 +80,9 @@ class RetireLater(tk.Frame):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text = "You Selected Retire Later", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
+
+        txt = tk.Entry(self, width=10)
+        txt.pack()
 
         button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
         button1.pack()
